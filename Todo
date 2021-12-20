@@ -1,0 +1,39 @@
+Actividades Necesarias y Complejidades de cada actividad
+
+Sumar coste total
+    - numero de productos
+        - 1 producto
+        - varios productos
+    - precio 
+        - 1 precios
+        - distintos precios
+
+Aplicar descuento
+    - descuento
+        - no descuentos
+        - 1 descuento
+        - varios descuentos
+    - precio-descuento
+        - 1 descuento a todos
+        - descuento por precio
+
+Aplicar tax
+    - tax
+        - no tax
+        - 1 tax
+        - varias tax
+    - estado-tax
+        - 1 estado
+        - varios estados
+
+
+
+[ ] 1 producto hardcoded, 1 precio hardcoded, no descuento, no tax
+[ ] 1 tax hardcoded
+[ ] 1 descuento hardcoded
+[ ] 1 tax dada por 1 estado
+[ ] varios productos, mismo precio
+[ ] varios productos, varios precios
+[ ] varias tax dadas dependiendo del estado
+[ ] descuento por tipo de precio
+[ ] varios descuentos 
