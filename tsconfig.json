@@ -10,8 +10,13 @@
     "lib": ["es6"],
     "outDir": "lib",
     "alwaysStrict": true,
-    "types": ["node", "jest"]
+    "baseUrl": ".",
+    "types": ["node", "jest"],
+    "paths": {
+      "src/*": ["src/*"],  
+      "test/*": ["tests/*"]
+    } 
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "tests/**/*"],
   "exclude": ["node_modules"]
 }
