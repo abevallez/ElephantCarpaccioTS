@@ -30,7 +30,8 @@ Aplicar tax
 
 [x] 1 producto hardcoded, 1 precio hardcoded, no descuento, no tax
 [x] 1 tax hardcoded
-[ ] 1 descuento hardcoded
+[x] 1 tax hardcoded, varios precios
+[x] 1 descuento hardcoded
 [ ] 1 tax dada por 1 estado
 [ ] varios productos, mismo precio
 [ ] varios productos, varios precios
