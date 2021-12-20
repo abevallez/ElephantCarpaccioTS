@@ -12,10 +12,6 @@
     "alwaysStrict": true,
     "baseUrl": ".",
     "types": ["node", "jest"],
-    "paths": {
-      "src/*": ["src/*"],  
-      "test/*": ["tests/*"]
-    } 
   },
   "include": ["src/**/*", "tests/**/*"],
   "exclude": ["node_modules"]
