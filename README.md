@@ -1,51 +1,10 @@
-# TypeScript Jest boilerplate
+# Elephant Carpaccio
 
-This boilerplate uses TypeScript and Jest as testing framework.
-Test files should are picked based on their name, here's a few examples that will get picked up by Jest:
+Accept 3 inputs from the user:
+ - How many items
+- Price per item
+- 2-letter state code
 
-- `MyClass.test.ts`
-- `MyJavaScriptModule.test.js`
-- `MyComponent.test.tsx`
-- `SubFolder/MyClass.test.ts`
+Output the total price. Give a discount based on the total price, add state tax based on the state and the discounted price.
 
-You can customize the regexp and jest configuration by editing the `package.json` file.
-
-## Installing dependencies
-
-```bash
-# Get Yarn
-npm install -g yarn
-
-# Install dependencies
-yarn install
-```
-
-## Running tests
-
-```bash
-# Run tests once
-yarn test
-
-# Run tests with Jest-CLI custom arguments (https://jestjs.io/docs/en/cli.html)
-yarn test --clearCache --debug
-
-# Run tests for a specific file
-yarn test MyFile.test.ts
-```
-
-A few other NPM scripts are provided for convenience, they all support custom arguments as described above.
-
-```
-# Run tests once with coverage
-# Coverage report available in ./coverage/index.html
-yarn test:cover
-
-# Run all tests in watch mode without coverage
-yarn test:watch
-
-# Run the tests with watch mode only for files changed since the last Git commit
-yarn test:changed
-
-# Run tests for CI environment (optimized for TravisCI)
-yarn test:ci
-```
+<img width="468" alt="Captura de pantalla 2021-12-19 a las 14 19 27" src="https://user-images.githubusercontent.com/6014261/146676266-dc2b391d-65c4-4abc-8e88-0e9382161e52.png">
