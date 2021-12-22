@@ -10,7 +10,7 @@ describe('tests Order object', () => {
     })
 
     test.each([
-        [[10, 20, 30], 50],
+        [[10, 20, 30], 60],
         [[10, 10, 10], 30],
         [[100, 50, 50], 200],
     ])('total of prices is sum of product prices', (products: number[], expected_total: number) => {
