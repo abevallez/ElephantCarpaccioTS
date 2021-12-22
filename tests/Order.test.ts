@@ -16,27 +16,6 @@ describe('tests Order object', () => {
     test.each([
         [[
             [10, 1],
-            [20, 1],
-            [30, 1],
-        ], 60],
-        [[
-            [10, 1],
-            [10, 1],
-            [10, 1],
-        ], 30],
-        [[
-            [100, 1],
-            [50, 1],
-            [40, 1],
-        ], 190]
-    ])('total of prices is sum of product prices with only 1 quantity by product', (products: number[][], expected_total: number) => {
-        let order: Order = new Order(products, 'UT')
-        expect(order.total).toBe(expected_total)
-    })
-
-    test.each([
-        [[
-            [10, 1],
             [20, 2],
             [30, 3],
         ], 140],
