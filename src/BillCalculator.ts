@@ -14,7 +14,10 @@ export class BillCalculator {
 
     static readonly DISCOUNTS = {
         '1000': 0.03,
-        '5000': 0.05
+        '5000': 0.05,
+        '7000': 0.07,
+        '10000': 0.10,
+        '15000': 0.15,
     }
 
     public calculateBill(order: Order): number {
