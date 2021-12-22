@@ -1,19 +1,22 @@
-export class Order {
-    public products: number[][]
-    public state: string
-    readonly total: number
+import { Product } from "./Product"
 
-    constructor(products: number[][], state: string){
+export class Order {
+    public products: Product[]
+    public state: string
+    public readonly total: number
+
+    constructor(products: Product[], state: string){
         this.products = products
         this.state = state
         this.total = this.sumPrices()
     }
 
     private sumPrices(): number {
-        let total_sum = 0
-        for (let product in this.products) {
-            total_sum += this.products[product][0] * this.products[product][1]
+        let totalSum = 0
+        this.products.forEach(product => {
+            totalSum += product.totalPrice
+        });{  
         }
-        return total_sum
+        return totalSum
     }
 }

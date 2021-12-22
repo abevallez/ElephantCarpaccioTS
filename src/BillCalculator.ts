@@ -1,5 +1,3 @@
-import { table } from "console"
-import { disconnect } from "process"
 import { Order } from "./Order"
 
 export class BillCalculator {
@@ -22,13 +20,21 @@ export class BillCalculator {
 
     public calculateBill(order: Order): number {
         let total = order.total
+        total = this.applyDiscount(order)
+        return this.applyTax(total, order.state)
+    }
+
+    private applyTax(total: number, state: string): number {
+        return total + (total * BillCalculator.TAXES[state])
+    }
+
+    private applyDiscount(order: Order) {
         let discount: number = 0
         for (let key in BillCalculator.DISCOUNTS) {
-            if (total > parseInt(key)){
+            if (order.total > parseInt(key)) {
                 discount = BillCalculator.DISCOUNTS[key]
             }
-        } 
-        total = total - (total * discount)
-        return total + (total * BillCalculator.TAXES[order.state])
+        }
+        return order.total - (order.total * discount)
     }
 }
