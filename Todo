@@ -35,7 +35,7 @@ Aplicar tax
 [x] 1 tax dada por 1 estado
 [x] varios productos, mismo precio
 [x] varios productos, varios precios
-[ ] varias tax dadas dependiendo del estado
-[ ] descuento por tipo de precio
+[x] varias tax dadas dependiendo del estado
+[x] descuento por tipo de precio
 [ ] varios descuentos 
 [ ] varias cantidades por tipo de producto y varios precios por cada tipo de producto  

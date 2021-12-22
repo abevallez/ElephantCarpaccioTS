@@ -1,4 +1,5 @@
 import { table } from "console"
+import { disconnect } from "process"
 import { Order } from "./Order"
 
 export class BillCalculator {
@@ -11,10 +12,20 @@ export class BillCalculator {
         'CA': 0.0825,
     }
 
+    static readonly DISCOUNTS = {
+        '1000': 0.03,
+        '5000': 0.05
+    }
+
     public calculateBill(order: Order): number {
         let total = order.total
-        if (total > 1000)
-            total = total - (total * 0.03)
+        let discount: number = 0
+        for (let key in BillCalculator.DISCOUNTS) {
+            if (total > parseInt(key)){
+                discount = BillCalculator.DISCOUNTS[key]
+            }
+        } 
+        total = total - (total * discount)
         return total + (total * BillCalculator.TAXES[order.state])
     }
 }
