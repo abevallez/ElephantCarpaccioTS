@@ -1,3 +1,4 @@
+import { Order } from '../src/Order'
 import { BillCalculator } from '../src/BillCalculator'
 
 describe('tests BillCalculator', () => {
@@ -13,48 +14,55 @@ describe('tests BillCalculator', () => {
         [[100]],
         [[50]],
         [[40]],
-    ]) ('tax UT is applied to total for 1 product < 1000$', (prices) => {
-        let totalBill: number = billCalculator.calculateBill(prices.length, prices, 'UT')
-        expect(totalBill).toBe(sumPrices(prices) * ut_tax)
+    ]) ('tax UT is applied to total for 1 product < 1000$', (products: number[]) => {
+        let state = 'UT'
+        let order: Order = new Order(products, state)
+        let totalBill: number = billCalculator.calculateBill(order)
+        expect(totalBill).toBe(order.total * ut_tax)
     });
     
     test('discount 3% and UT tax is applied when total > 1000$',() => {
-        let prices: number[] = [1456]
+        let products: number[] = [1456]
         const discount = 0.03
+        let state = 'UT'
+        let order: Order = new Order(products, state)
 
-        let totalBill: number = billCalculator.calculateBill(prices.length, prices, 'UT')
-        let totalExpected: number = (sumPrices(prices) * discount) * ut_tax
+        let totalBill: number = billCalculator.calculateBill(order)
+        let totalExpected: number = (order.total * discount) * ut_tax
 
         expect(totalBill).toBe(totalExpected)
     });
 
     test('calculate total with many products, same price by product < 1000$', () => {
-        let prices: number[] = [50, 50]
+        let products: number[] = [50, 50]
+        let state = 'UT'
+        let order: Order = new Order(products, state)
 
-        let totalBill: number = billCalculator.calculateBill(prices.length, prices, 'UT')
-        let totalExpected: number = sumPrices(prices) * ut_tax
+        let totalBill: number = billCalculator.calculateBill(order)
+        let totalExpected: number = order.total * ut_tax
 
         expect(totalBill).toBe(totalExpected)
     });
 
     test('calculate total with many products, same price by product > 1000$', () => {
-        let prices: number[] = [600, 600]
+        let products: number[] = [600, 600]
         const discount = 0.03
+        let state = 'UT'
+        let order: Order = new Order(products, state)
 
-        let totalBill: number = billCalculator.calculateBill(prices.length, prices, 'UT')
-        let totalExpected: number = (sumPrices(prices) * discount) * ut_tax
+        let totalBill: number = billCalculator.calculateBill(order)
+        let totalExpected: number = (order.total * discount) * ut_tax
         expect(totalBill).toBe(totalExpected)
     });
 
     test('calculate total with many products, differentes prices by product < 1000$', () => {
-        let prices: number[] = [300, 50]
+        let products: number[] = [300, 50]
         const discount = 0.03
-        let totalBill: number = billCalculator.calculateBill(prices.length, prices, 'UT')
-        let totalExpected: number = sumPrices(prices) * ut_tax
+        let state = 'UT'
+        let order: Order = new Order(products, state)
+
+        let totalBill: number = billCalculator.calculateBill(order)
+        let totalExpected: number = order.total * ut_tax
         expect(totalBill).toBe(totalExpected)
     });
 })
-
-function sumPrices(prices: number[]) {
-    return prices.reduce((a, b) => a + b, 0);
-}
