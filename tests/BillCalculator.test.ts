@@ -16,7 +16,10 @@ describe('tests BillCalculator', () => {
         ['AL', 0.04],
         ['CA', 0.0825]
     ])('Tax applied by estate without discount', (state: string, tax: number) => {
-        let products: number[] = [300, 50]
+        let products: number[][] = [
+            [300, 1],
+            [50, 1]
+        ]
         let order: Order = new Order(products, state)
 
         let totalBill: number = billCalculator.calculateBill(order)
@@ -24,7 +27,7 @@ describe('tests BillCalculator', () => {
     })
     
     test('discount 3% when total > 1000$',() => {
-        let products: number[] = [1456]
+        let products: number[][] = [[1456, 1]]
         let state = 'UT'
         let order: Order = new Order(products, state)
 
@@ -36,7 +39,10 @@ describe('tests BillCalculator', () => {
     });
 
     test('discount 5% when total > 5000', () => {
-        let products: number[] = [3000, 2500]
+        let products: number[][] = [
+            [3000, 1],
+            [2500, 1]
+        ]
         const discount = 0.05
         let state = 'UT'
         let order: Order = new Order(products, state)
@@ -49,7 +55,10 @@ describe('tests BillCalculator', () => {
     })
 
     test('discount 7% when total > 7000$',() => {
-        let products: number[] = [3000, 4001]
+        let products: number[][] = [
+            [3000, 1],
+            [4001, 1]
+        ]
         let state = 'UT'
         let order: Order = new Order(products, state)
 
@@ -61,7 +70,11 @@ describe('tests BillCalculator', () => {
     });
 
     test('discount 10% when total > 10000$',() => {
-        let products: number[] = [3000, 2500, 7000]
+        let products: number[][] = [
+            [3000, 1],
+            [2500, 1],
+            [7000, 1]
+        ]
         let state = 'UT'
         let order: Order = new Order(products, state)
 
@@ -73,7 +86,12 @@ describe('tests BillCalculator', () => {
     });
 
     test('discount 15% when total > 15000$',() => {
-        let products: number[] = [3000, 2500, 7000, 4000]
+        let products: number[][] = [
+            [3000, 1],
+            [2500, 1],
+            [17000, 1],
+            [4000, 1]
+        ]
         let state = 'UT'
         let order: Order = new Order(products, state)
 
@@ -84,11 +102,8 @@ describe('tests BillCalculator', () => {
         expect(totalBill).toBe(totalExpected)
     });
 
-
-
-
     test('calculate total with many products, same price by product < 1000$', () => {
-        let products: number[] = [50, 50]
+        let products: number[][] = [[50, 2]]
         let state = 'UT'
         let order: Order = new Order(products, state)
 
@@ -96,25 +111,16 @@ describe('tests BillCalculator', () => {
         expect(totalBill).toBe(order.total + (order.total * BillCalculator.TAXES['UT']))
     });
 
-    test('calculate total with many products, same price by product > 1000$', () => {
-        let products: number[] = [600, 600]
-        const discount = 0.03
+    test('diferents quantities by product with diferents prices are accepted', () => {
+        let products: number[][] = [
+            [50,2],
+            [100,5]
+        ]
         let state = 'UT'
         let order: Order = new Order(products, state)
-
         let totalBill: number = billCalculator.calculateBill(order)
-        let total_with_discount = order.total - (order.total * discount)
-        let totalExpected: number = total_with_discount + (total_with_discount * BillCalculator.TAXES['UT'])
-    });
-
-    test('calculate total with many products, differentes prices by product < 1000$', () => {
-        let products: number[] = [300, 50]
-        const discount = 0.03
-        let state = 'UT'
-        let order: Order = new Order(products, state)
-
-        let totalBill: number = billCalculator.calculateBill(order)
-        let total_with_discount = order.total - (order.total * discount)
-        let totalExpected: number = total_with_discount + (total_with_discount * BillCalculator.TAXES['UT'])
-    });
+        let totalsum = (50 * 2) + (100 * 5)
+        let totalExpected: number = totalsum + (totalsum * BillCalculator.TAXES['UT'])
+        expect(totalBill).toBe(totalExpected)
+    })
 })
