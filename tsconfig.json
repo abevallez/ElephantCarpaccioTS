@@ -12,6 +12,7 @@
     "alwaysStrict": true,
     "baseUrl": ".",
     "types": ["node", "jest"],
+    "target": "ES6"
   },
   "include": [
     "src/**/**.ts",
